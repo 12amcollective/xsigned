@@ -1,0 +1,242 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.app {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.main-content {
+  text-align: center;
+  max-width: 600px;
+  width: 100%;
+}
+
+.coming-soon {
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: #6b7280;
+  margin-bottom: 2rem;
+  text-transform: uppercase;
+}
+
+.main-title {
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 1.1;
+  color: #111827;
+  margin-bottom: 3rem;
+  letter-spacing: -0.025em;
+}
+
+.signup-section {
+  margin-bottom: 2.5rem;
+}
+
+.email-form {
+  display: flex;
+  gap: 0;
+  max-width: 400px;
+  margin: 0 auto;
+  border-radius: 50px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.email-input {
+  flex: 1;
+  padding: 1rem 1.5rem;
+  border: 2px solid #e5e7eb;
+  border-right: none;
+  outline: none;
+  font-size: 1rem;
+  background: white;
+  border-radius: 50px 0 0 50px;
+  color: #374151;
+}
+
+.email-input::placeholder {
+  color: #9ca3af;
+}
+
+.email-input:focus {
+  border-color: #3b82f6;
+}
+
+.join-button {
+  padding: 1rem 2rem;
+  background: #111827;
+  color: white;
+  border: none;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  border-radius: 0 50px 50px 0;
+  white-space: nowrap;
+}
+
+.join-button:hover {
+  background: #374151;
+}
+
+.success-message {
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.success-message p {
+  color: #166534;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+.success-message p:last-child {
+  margin-bottom: 0;
+}
+
+.tagline {
+  color: #4b5563;
+  font-size: 1.125rem;
+  line-height: 1.6;
+  margin-bottom: 3rem;
+}
+
+.tagline p {
+  margin-bottom: 0.25rem;
+}
+
+.tagline p:last-child {
+  margin-bottom: 0;
+}
+
+.logo-section {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.sound-wave-logo {
+  display: flex;
+  align-items: end;
+  gap: 3px;
+  height: 40px;
+}
+
+.wave-bar {
+  width: 4px;
+  background: #111827;
+  border-radius: 2px;
+  animation: wave 1.5s ease-in-out infinite;
+}
+
+.wave-bar:nth-child(1) {
+  height: 20px;
+  animation-delay: 0s;
+}
+
+.wave-bar:nth-child(2) {
+  height: 35px;
+  animation-delay: 0.1s;
+}
+
+.wave-bar:nth-child(3) {
+  height: 40px;
+  animation-delay: 0.2s;
+}
+
+.wave-bar:nth-child(4) {
+  height: 25px;
+  animation-delay: 0.3s;
+}
+
+.wave-bar:nth-child(5) {
+  height: 30px;
+  animation-delay: 0.4s;
+}
+
+.wave-dot {
+  width: 6px;
+  height: 6px;
+  background: #111827;
+  border-radius: 50%;
+  margin-left: 8px;
+  align-self: center;
+}
+
+@keyframes wave {
+  0%, 100% {
+    transform: scaleY(1);
+  }
+  50% {
+    transform: scaleY(0.5);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .app {
+    padding: 1rem;
+  }
+  
+  .main-title {
+    font-size: 2.25rem;
+    margin-bottom: 2rem;
+  }
+  
+  .email-form {
+    flex-direction: column;
+    border-radius: 0.75rem;
+    max-width: 300px;
+  }
+  
+  .email-input {
+    border-radius: 0.75rem;
+    border-right: 2px solid #e5e7eb;
+    margin-bottom: 1rem;
+  }
+  
+  .join-button {
+    border-radius: 0.75rem;
+  }
+  
+  .coming-soon {
+    font-size: 0.75rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .tagline {
+    font-size: 1rem;
+    margin-bottom: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .main-title {
+    font-size: 1.875rem;
+  }
+  
+  .email-form {
+    max-width: 100%;
+  }
+}
