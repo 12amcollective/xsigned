@@ -37,7 +37,7 @@ A modern React TypeScript landing page for a revolutionary music industry AI pla
 This project uses separate environment files:
 
 - **`.env.development`** - Development environment settings (committed to repo)
-- **`.env.production`** - Production environment settings (committed to repo)  
+- **`.env.production`** - Production environment settings (committed to repo)
 - **`.env.local.example`** - Template for local overrides (committed to repo)
 - **`.env.local`** - Your local settings with actual API keys (not committed)
 
@@ -45,13 +45,55 @@ Environment variables use the `VITE_` prefix and are available in the app as `im
 
 ### Development
 
-Start the development server:
+**For optimal development experience, we recommend running frontend and backend separately:**
+
+#### Option 1: Hybrid Development (Recommended)
+
+1. **Start backend services** (from your backend repository):
+
+   ```bash
+   # In your backend repository directory
+   docker-compose -f docker-compose.dev.yml up -d
+   ```
+
+2. **Start frontend development server** (from this repository):
+
+   ```bash
+   npm run dev
+   ```
+
+3. **Access your application:**
+   - Frontend: `http://localhost:5173` (with hot reloading)
+   - Backend API: `http://localhost:5001/api`
+   - Database: `localhost:5432`
+
+#### Option 2: Full Docker Development
 
 ```bash
-npm run dev
+# From your backend repository
+docker-compose -f docker-compose.yml up --build
 ```
 
-The application will be available at `http://localhost:5173`
+#### Development URLs
+
+**Frontend**: `http://localhost:5173` (with hot reloading)  
+**Backend API**: `http://localhost:5001/api`  
+**Database**: `localhost:5432`
+
+#### Backend Connection
+
+The frontend is configured to connect to your backend API at:
+
+- **Development**: `http://localhost:5001/api` (when backend runs in Docker)
+- **Production**: `https://xsigned.ai/api`
+
+To switch to connecting to your Raspberry Pi for testing, update `.env.development`:
+
+```bash
+# Uncomment and set your Pi's IP address:
+VITE_API_URL=http://[YOUR_PI_IP]/api
+VITE_API_BASE_URL=http://[YOUR_PI_IP]
+```
 
 ### Build
 
