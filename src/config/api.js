@@ -2,11 +2,11 @@
 // Save this as src/config/api.js in your React project
 
 const API_CONFIG = {
-  // Use environment variable or fallback to Pi IP
-  baseURL: process.env.REACT_APP_API_URL || 'http://192.168.86.70/api',
+  // Use environment variable or fallback to production URL
+  baseURL: import.meta.env.VITE_API_URL || 'https://xsigned.ai/api',
   
   // For local development
-  localURL: process.env.REACT_APP_API_URL_LOCAL || 'http://localhost:5001/api',
+  localURL: import.meta.env.VITE_API_URL || 'http://localhost:5001/api',
   
   // Headers
   headers: {
@@ -15,12 +15,16 @@ const API_CONFIG = {
   
   // Timeout
   timeout: 10000,
+  
+  // Environment info
+  isDevelopment: import.meta.env.VITE_ENV === 'development',
+  isProduction: import.meta.env.VITE_ENV === 'production',
 };
 
 // Helper function to get the correct API URL
 export const getApiUrl = () => {
   // Check if we're in development mode
-  const isDevelopment = process.env.NODE_ENV === 'development';
+  const isDevelopment = import.meta.env.DEV || API_CONFIG.isDevelopment;
   const isLocalhost = window.location.hostname === 'localhost' || 
                      window.location.hostname === '127.0.0.1';
   

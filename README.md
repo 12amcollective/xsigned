@@ -25,6 +25,23 @@ A modern React TypeScript landing page for a revolutionary music industry AI pla
    ```bash
    npm install
    ```
+3. Set up environment variables:
+   ```bash
+   # Copy the example file for local development (optional)
+   cp .env.local.example .env.local
+   # Edit .env.local with your actual API keys and local settings
+   ```
+
+### Environment Configuration
+
+This project uses separate environment files:
+
+- **`.env.development`** - Development environment settings (committed to repo)
+- **`.env.production`** - Production environment settings (committed to repo)  
+- **`.env.local.example`** - Template for local overrides (committed to repo)
+- **`.env.local`** - Your local settings with actual API keys (not committed)
+
+Environment variables use the `VITE_` prefix and are available in the app as `import.meta.env.VITE_VARIABLE_NAME`.
 
 ### Development
 
