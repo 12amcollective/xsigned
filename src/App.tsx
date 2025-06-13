@@ -1,16 +1,45 @@
 import { useState } from "react";
 import "./App.css";
+import apiClient from "./config/api";
 
 function App() {
   const [email, setEmail] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (email) {
+    if (!email) return;
+
+    setIsLoading(true);
+    setError("");
+
+    try {
+      // Call your backend API to join the waitlist
+      await apiClient.joinWaitlist(email);
+
       setIsSubmitted(true);
-      // Here you would typically send the email to your backend
-      console.log("Email submitted:", email);
+      console.log("Email successfully submitted to waitlist:", email);
+    } catch (error) {
+      console.error("Failed to submit email:", error);
+
+      // More detailed error handling
+      if (error instanceof Error) {
+        if (error.message.includes("HTTP error! status:")) {
+          const statusMatch = error.message.match(/status: (\d+)/);
+          const status = statusMatch ? statusMatch[1] : "unknown";
+          setError(`Server error (${status}). Please try again.`);
+        } else if (error.message.includes("Failed to fetch")) {
+          setError("Cannot connect to server. Please check your connection.");
+        } else {
+          setError(`Error: ${error.message}`);
+        }
+      } else {
+        setError("Failed to join waitlist. Please try again.");
+      }
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -33,15 +62,26 @@ function App() {
                 onChange={(e) => setEmail(e.target.value)}
                 className="email-input"
                 required
+                disabled={isLoading}
               />
-              <button type="submit" className="join-button">
-                Join Waitlist
+              <button
+                type="submit"
+                className="join-button"
+                disabled={isLoading}
+              >
+                {isLoading ? "Joining..." : "Join Waitlist"}
               </button>
             </form>
           ) : (
             <div className="success-message">
               <p>Thank you for joining our waitlist!</p>
               <p>We'll be in touch soon.</p>
+            </div>
+          )}
+
+          {error && (
+            <div className="error-message">
+              <p>{error}</p>
             </div>
           )}
         </div>
