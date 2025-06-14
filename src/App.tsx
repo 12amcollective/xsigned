@@ -8,6 +8,13 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
 
+  // Debug environment variables on component mount
+  console.log("🔧 App Debug Info:");
+  console.log("- VITE_ENV:", import.meta.env.VITE_ENV);
+  console.log("- VITE_API_URL:", import.meta.env.VITE_API_URL);
+  console.log("- MODE:", import.meta.env.MODE);
+  console.log("- DEV:", import.meta.env.DEV);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email) return;

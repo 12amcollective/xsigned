@@ -52,12 +52,16 @@ class ApiClient {
   async request(endpoint: string, options: RequestOptions = {}): Promise<any> {
     // In development, use relative URLs that will be proxied by Vite
     // In production, use the full baseURL
-    const url = API_CONFIG.isDevelopment ? endpoint : `${this.baseURL}${endpoint}`;
+    const url = API_CONFIG.isDevelopment ? `/api${endpoint}` : `${this.baseURL}${endpoint}`;
     
-    console.log('Making API request to:', url);
-    console.log('Environment:', API_CONFIG.isDevelopment ? 'development' : 'production');
-    console.log('Base URL:', this.baseURL);
-    console.log('Request options:', options);
+    console.log('🔍 API Request Debug:');
+    console.log('- Endpoint:', endpoint);
+    console.log('- Final URL:', url);
+    console.log('- Environment:', API_CONFIG.isDevelopment ? 'development' : 'production');
+    console.log('- Base URL:', this.baseURL);
+    console.log('- VITE_ENV:', import.meta.env.VITE_ENV);
+    console.log('- VITE_API_URL:', import.meta.env.VITE_API_URL);
+    console.log('- Request options:', options);
     
     const config: RequestInit = {
       method: options.method || 'GET',
