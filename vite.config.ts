@@ -10,7 +10,7 @@ export default defineConfig({
     strictPort: true, // Fail if port is already in use
     proxy: {
       '/api': {
-        target: 'http://192.168.86.70',
+        target: 'http://192.168.86.70:8080',
         changeOrigin: true,
         secure: false,
       }

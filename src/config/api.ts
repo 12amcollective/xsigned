@@ -98,10 +98,22 @@ class ApiClient {
   }
 
   async joinWaitlist(email: string): Promise<any> {
-    return this.request('/join_waitlist', {
+    return this.request('/waitlist/join', {
       method: 'POST',
       body: JSON.stringify({ email }),
     });
+  }
+
+  async getWaitlistStats(): Promise<any> {
+    return this.request('/waitlist/stats');
+  }
+
+  async getWaitlistEntries(): Promise<any> {
+    return this.request('/waitlist/');
+  }
+
+  async waitlistHealthCheck(): Promise<any> {
+    return this.request('/waitlist/health');
   }
 
   async getUser(userId: string): Promise<any> {
